@@ -4,8 +4,13 @@
   "description": "challenge 1 pxl widgets",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc",
+    "start": "npm run build && node build/index.js"
   },
   "author": "Jordi Baliellas",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.1",
+    "typescript": "^4.4.4"
+  }
 }

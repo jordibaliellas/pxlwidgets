@@ -1,0 +1,19 @@
+{
+  "name": "pxlwidgets",
+  "version": "1.0.0",
+  "description": "pxl widgets challenges",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordibaliellas/pxlwidgets.git"
+  },
+  "author": "Jordi Baliellas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordibaliellas/pxlwidgets/issues"
+  },
+  "homepage": "https://github.com/jordibaliellas/pxlwidgets#readme"
+}

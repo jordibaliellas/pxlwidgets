@@ -1,10 +1,5 @@
 import express from "express";
-import NodeCache from "node-cache";
-export const apiCache = new NodeCache({
-  stdTTL: 60,
-  checkperiod: 120,
-  deleteOnExpire: true,
-});
+import { apiCache } from "../infra/cache";
 
 export const cacheMiddleware = (
   req: express.Request,

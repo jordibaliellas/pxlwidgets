@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { GeneralObject } from '../inferfaces/util.interface';
+import { Collection, CollectionQuery } from '../inferfaces/collection.inteface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,9 @@ export class CollectionService {
 
   constructor(private http: HttpClient) {}
 
-  getCollection(language: string): Observable<GeneralObject> {
+  getCollection({ language, page }: CollectionQuery): Observable<Collection> {
     const url = `${environment.rijksmuseumApi}/${language}/${this.collectionPath}`;
-    return this.http.get<GeneralObject>(url);
+    const params = new HttpParams().set('p', page);
+    return this.http.get<Collection>(url, { params });
   }
 }

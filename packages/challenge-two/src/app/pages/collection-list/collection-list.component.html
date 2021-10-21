@@ -1,0 +1,15 @@
+<div *ngIf="rows$ | async as rows">
+  <app-table
+    [columns]="columns"
+    [rows]="rows"
+    (clickedRow)="onClickRow($event)"
+  ></app-table>
+</div>
+<div>
+  <app-pagination
+    [limit]="limit"
+    [page]="page$ | async"
+    [total]="total"
+    (clickPage)="onClickPage($event)"
+  ></app-pagination>
+</div>

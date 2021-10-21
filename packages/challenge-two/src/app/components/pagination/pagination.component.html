@@ -1,4 +1,4 @@
-<ul class="flex">
+<ul class="flex justify-center">
   <li
     class="mx-1 px-3 py-2 bg-gray-100 rounded-lg select-none"
     (click)="goToPage(currentPage - 1)"
@@ -22,7 +22,7 @@
         page !== currentPage
     }"
   >
-    <span class="font-bold">{{ page }} </span>
+    <span class="font-bold">{{ page + 1 }} </span>
   </li>
   <li
     class="mx-1 px-3 py-2 bg-gray-100 rounded-lg select-none"

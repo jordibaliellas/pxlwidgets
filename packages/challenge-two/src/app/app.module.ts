@@ -6,9 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableComponent } from './components/table/table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { CollectionListComponent } from './pages/collection-list/collection-list.component';
+import { CollectionDetailComponent } from './pages/collection-detail/collection-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, PaginationComponent],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    PaginationComponent,
+    CollectionListComponent,
+    CollectionDetailComponent,
+  ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

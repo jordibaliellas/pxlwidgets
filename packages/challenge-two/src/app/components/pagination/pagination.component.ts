@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 const TOTAL_SELECTOR_PAGES = 4;
-const FIRST_PAGE = 1;
+const FIRST_PAGE = 0;
 
 @Component({
   selector: 'app-pagination',
@@ -15,7 +15,7 @@ const FIRST_PAGE = 1;
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnChanges {
-  @Input() skip: number;
+  @Input() page: number | null;
   @Input() limit: number;
   @Input() total: number;
   @Output() clickPage = new EventEmitter();
@@ -36,7 +36,7 @@ export class PaginationComponent implements OnChanges {
   calculatePages() {
     if (!this.total) return;
 
-    this.currentPage = this.skip / this.limit + 1;
+    this.currentPage = this.page || 0;
     this.lastPage = Math.ceil(this.total / this.limit);
 
     this.isFirstPage = this.currentPage === FIRST_PAGE;

@@ -6,7 +6,6 @@ export const cacheMiddleware = (
   res: express.Response,
   next: express.NextFunction
 ) => {
-  console.log(req.originalUrl);
   const result = apiCache.get(req.originalUrl);
   if (result) return res.json(result).end();
   next();

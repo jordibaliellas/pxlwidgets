@@ -1,0 +1,29 @@
+<section class="container mx-auto p-6 font-mono">
+  <div class="w-full mb-8 rounded-lg shadow-lg">
+    <div class="w-full">
+      <table class="w-full">
+        <thead>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th
+              *ngFor="let column of columns; let indexColumn = index"
+              class="px-4 py-3"
+            >
+              {{ column.label }}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr *ngFor="let row of rows; let rowIndex = index" class="text-gray-700 cursor-pointer">
+            <td
+              *ngFor="let column of columns"
+              class="px-4 py-3 text-ms font-semibold border"
+              (click)="clickRow(column, row, rowIndex)"
+            >
+              {{ row[column.key] }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

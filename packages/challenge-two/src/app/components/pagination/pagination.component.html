@@ -1,0 +1,40 @@
+<ul class="flex">
+  <li
+    class="mx-1 px-3 py-2 bg-gray-100 rounded-lg select-none"
+    (click)="goToPage(currentPage - 1)"
+    [ngClass]="{
+      'cursor-default text-gray-500': isLastPage,
+      'cursor-pointer text-gray-700 hover:bg-gray-700 hover:text-gray-200':
+        !isLastPage
+    }"
+  >
+    <div class="flex items-center font-bold">
+      <span class="mx-1">previous</span>
+    </div>
+  </li>
+  <li
+    *ngFor="let page of pages"
+    (click)="goToPage(page)"
+    class="mx-1 px-3 py-2 bg-gray-100 rounded-lg select-none"
+    [ngClass]="{
+      'cursor-default text-gray-500': page === currentPage,
+      'cursor-pointer text-gray-700 hover:bg-gray-700 hover:text-gray-200':
+        page !== currentPage
+    }"
+  >
+    <span class="font-bold">{{ page }} </span>
+  </li>
+  <li
+    class="mx-1 px-3 py-2 bg-gray-100 rounded-lg select-none"
+    (click)="goToPage(currentPage + 1)"
+    [ngClass]="{
+      'cursor-default text-gray-500': isLastPage,
+      'cursor-pointer text-gray-700 hover:bg-gray-700 hover:text-gray-200':
+        !isLastPage
+    }"
+  >
+    <div class="flex items-center font-bold">
+      <span class="mx-1">Next</span>
+    </div>
+  </li>
+</ul>

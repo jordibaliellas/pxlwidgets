@@ -8,6 +8,7 @@ import { TableComponent } from './components/table/table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CollectionListComponent } from './pages/collection-list/collection-list.component';
 import { CollectionDetailComponent } from './pages/collection-detail/collection-detail.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CollectionDetailComponent } from './pages/collection-detail/collection-
     PaginationComponent,
     CollectionListComponent,
     CollectionDetailComponent,
+    LoadingComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],

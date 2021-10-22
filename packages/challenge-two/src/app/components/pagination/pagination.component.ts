@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 const TOTAL_SELECTOR_PAGES = 4;
-const FIRST_PAGE = 0;
+const FIRST_PAGE = 1;
 
 @Component({
   selector: 'app-pagination',

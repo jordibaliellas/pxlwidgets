@@ -1,15 +1,21 @@
-<div *ngIf="rows$ | async as rows">
-  <app-table
-    [columns]="columns"
-    [rows]="rows"
-    (clickedRow)="onClickRow($event)"
-  ></app-table>
+<div *ngIf="!isLoading && (rows$ | async) as rows; else loadingBlock">
+  <div>
+    <app-table
+      [columns]="columns"
+      [rows]="rows"
+      (clickedRow)="onClickRow($event)"
+    ></app-table>
+  </div>
+  <div *ngIf="total >= 0">
+    <app-pagination
+      [limit]="limit"
+      [page]="page$ | async"
+      [total]="total"
+      (clickPage)="onClickPage($event)"
+    ></app-pagination>
+  </div>
 </div>
-<div>
-  <app-pagination
-    [limit]="limit"
-    [page]="page$ | async"
-    [total]="total"
-    (clickPage)="onClickPage($event)"
-  ></app-pagination>
-</div>
+
+<ng-template #loadingBlock>
+  <app-loading></app-loading>
+</ng-template>

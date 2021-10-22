@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { filter, map, mergeMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Column } from 'src/app/inferfaces/table.interface';
 import { CollectionService } from 'src/app/services/collection.service';
 import { LanguageService } from 'src/app/services/language.service';
+import { nextTick } from 'src/app/utils/next-tick';
 
 @Component({
   selector: 'app-collection-list',
@@ -29,8 +30,9 @@ export class CollectionListComponent implements OnInit {
   rows$: Observable<Record<string, any>[]>;
 
   limit = 10;
-  page$ = new BehaviorSubject(0);
+  page$ = new BehaviorSubject(1);
   total = 0;
+  isLoading = false;
 
   constructor(
     private collectionService: CollectionService,
@@ -40,13 +42,31 @@ export class CollectionListComponent implements OnInit {
   ngOnInit() {
     const languageObservable = this.languageService.getLanguageObservable();
     this.rows$ = combineLatest([languageObservable, this.page$]).pipe(
+      tap(() => {
+        nextTick(() => {
+          this.isLoading = true;
+        });
+      }),
       mergeMap(([language, page]) => {
         return this.collectionService.getCollection({ language, page });
       }),
       tap((res) => {
         this.total = res.count;
       }),
-      map((res) => res.artObjects)
+      map((res) => res.artObjects),
+      tap(() => {
+        nextTick(() => {
+          this.isLoading = false;
+        });
+      }),
+      catchError((err) => {
+        console.error('We had some error getting collection');
+        console.error(err);
+        nextTick(() => {
+          this.isLoading = false;
+        });
+        return of([]);
+      })
     );
   }
 

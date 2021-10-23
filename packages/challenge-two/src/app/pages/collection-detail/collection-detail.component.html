@@ -1,1 +1,102 @@
-<p>collection-detail works!</p>
+<div
+  *ngIf="collectionInfo$ | async as collectionInfo; else loadingBlock"
+  class="
+    flex flex-col
+    p-3
+    h-full
+    w-full
+    justify-center
+    bg-gray-100
+    text-gray-700
+  "
+>
+  <div class="flex justify-between items-center">
+    <div
+      class="
+        mx-1
+        px-3
+        py-2
+        bg-gray-100
+        rounded-lg
+        select-none
+        cursor-pointer
+        border
+        text-gray-700
+        hover:bg-gray-700 hover:text-gray-200
+      "
+    >
+      <span class="font-bold">back</span>
+    </div>
+    <div class="p-3">
+      <app-language-selector></app-language-selector>
+    </div>
+  </div>
+  <div class="flex justify-center items-center">
+    <div class="w-1/2 p-3 border-r border-gray-400 bg-gray-100">
+      <img #imgCollection [src]="collectionInfo?.artObject?.webImage?.url" />
+    </div>
+    <div class="w-1/2 p-3 bg-gray-100">
+      <div>
+        <h1 class="text-2xl">
+          {{ collectionInfo?.artObject?.title }}
+        </h1>
+      </div>
+      <div>
+        <h1 class="text-2xl">
+          {{ collectionInfo?.artObject?.dating?.presentingDate }}
+        </h1>
+      </div>
+      <div>
+        <span class="underline">Description</span>
+        <div class="pl-2">
+          {{ collectionInfo?.artObject?.label?.description }}
+        </div>
+      </div>
+      <div>
+        <span class="underline">Dimensions</span>
+        <div class="pl-2">
+          <span
+            *ngFor="
+              let dimension of collectionInfo?.artObject?.dimensions;
+              let i = index
+            "
+          >
+            <span *ngIf="i !== 0">/</span>
+            {{ dimension.type }}: {{ dimension.value }} {{ dimension.cm }}
+          </span>
+        </div>
+      </div>
+      <div>
+        <span class="underline">Historical persons</span>
+        <div class="pl-2">
+          <span
+            *ngFor="
+              let historicalPerson of collectionInfo?.artObject
+                ?.historicalPersons;
+              let i = index
+            "
+          >
+            <span *ngIf="i !== 0">/</span>
+            {{ historicalPerson }}
+          </span>
+        </div>
+      </div>
+      <div>
+        <span class="underline">Marker liner</span>
+        <div class="pl-2">
+          {{ collectionInfo?.artObject?.label?.makerLine }}
+        </div>
+      </div>
+      <div>
+        <span class="underline">Notes</span>
+        <div class="pl-2">
+          {{ collectionInfo?.artObject?.label?.notes }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingBlock>
+  <app-loading></app-loading>
+</ng-template>

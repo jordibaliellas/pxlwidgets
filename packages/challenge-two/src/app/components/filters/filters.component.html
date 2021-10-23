@@ -4,6 +4,7 @@
     class="flex mr-4"
     [label]="input.label"
     [placeholder]="input.placeholder"
+    [valueInput]="input.value || ''"
     (changeInput)="changeInput(input.key, $event)"
   ></app-input>
 </div>

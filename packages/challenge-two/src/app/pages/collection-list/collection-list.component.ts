@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest, Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, map, mergeMap, tap } from 'rxjs/operators';
 import { InputForm } from 'src/app/inferfaces/filter.interface';
 import { Column } from 'src/app/inferfaces/table.interface';
 import { GeneralObject } from 'src/app/inferfaces/util.interface';
@@ -63,6 +63,7 @@ export class CollectionListComponent implements OnInit {
     const filtersObservable$ = this.filtersService.getFiltersObservable();
     this.page$ = filtersObservable$.pipe(map((filters) => filters.p));
     this.rows$ = combineLatest([languageObservable$, filtersObservable$]).pipe(
+      debounceTime(1000),
       tap(() => {
         nextTick(() => {
           this.isLoading = true;

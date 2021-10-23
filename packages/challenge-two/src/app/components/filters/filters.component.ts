@@ -8,10 +8,17 @@ import { FiltersService } from 'src/app/services/filters.service';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent {
+export class FiltersComponent implements OnInit {
   @Input() inputs: InputForm[];
 
   constructor(private filtersService: FiltersService) {}
+
+  ngOnInit() {
+    const currentFilters = this.filtersService.getCurrentFilters();
+    this.inputs.forEach((input) => {
+      input.value = currentFilters[input.key] || '';
+    });
+  }
 
   changeInput(key: string, value: string) {
     const currentFilters = this.filtersService.getCurrentFilters();

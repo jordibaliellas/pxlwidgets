@@ -1,12 +1,18 @@
-<div *ngIf="!isLoading && (rows$ | async) as rows; else loadingBlock">
-  <div>
+<div
+  *ngIf="!isLoading && (rows$ | async) as rows; else loadingBlock"
+  class="p-4"
+>
+  <div class="p-3">
+    <app-filters [inputs]="filters"></app-filters>
+  </div>
+  <div class="p-3">
     <app-table
       [columns]="columns"
       [rows]="rows"
       (clickedRow)="onClickRow($event)"
     ></app-table>
   </div>
-  <div *ngIf="total >= 0">
+  <div *ngIf="total >= 0" class="p-3">
     <app-pagination
       [limit]="limit"
       [page]="page$ | async"

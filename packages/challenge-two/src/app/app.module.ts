@@ -9,6 +9,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { CollectionListComponent } from './pages/collection-list/collection-list.component';
 import { CollectionDetailComponent } from './pages/collection-detail/collection-detail.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from './components/filters/filters.component';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,10 @@ import { LoadingComponent } from './components/loading/loading.component';
     CollectionListComponent,
     CollectionDetailComponent,
     LoadingComponent,
+    FiltersComponent,
+    InputComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

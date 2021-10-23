@@ -1,0 +1,14 @@
+<span
+  class="rounded-l-lg px-3 py-2 bg-gray-100 text-gray-700 whitespace-no-wrap"
+>
+  <div class="flex items-center font-bold">
+    <span class="mx-1"> {{ label }}</span>
+  </div>
+</span>
+<input
+  class="border rounded-r-lg ro px-4 py-2 outline-none"
+  type="text"
+  [(ngModel)]="valueInput"
+  (ngModelChange)="onChangeInput()"
+  [placeholder]="placeholder"
+/>

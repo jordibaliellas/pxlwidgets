@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { InputForm } from 'src/app/inferfaces/filter.interface';
 import { Column } from 'src/app/inferfaces/table.interface';
 import { CollectionService } from 'src/app/services/collection.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -24,6 +25,24 @@ export class CollectionListComponent implements OnInit {
     {
       key: 'principalOrFirstMaker',
       label: 'Principal or first maker',
+    },
+  ];
+
+  filters: InputForm[] = [
+    {
+      key: 'objectNumber',
+      label: 'Object number:',
+      placeholder: 'Object number...',
+    },
+    {
+      key: 'title',
+      label: 'Title:',
+      placeholder: 'Title...',
+    },
+    {
+      key: 'principalOrFirstMaker',
+      label: 'Principal or first maker:',
+      placeholder: 'Principal or first maker...',
     },
   ];
 

@@ -1,0 +1,9 @@
+<div class="flex justify-center">
+  <app-input-filter
+    *ngFor="let input of inputs"
+    class="flex mr-4"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+    (changeInput)="changeInput(input.key, $event)"
+  ></app-input-filter>
+</div>

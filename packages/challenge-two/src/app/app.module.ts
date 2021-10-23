@@ -12,6 +12,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { FormsModule } from '@angular/forms';
 import { FiltersComponent } from './components/filters/filters.component';
 import { InputComponent } from './components/input/input.component';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
+import { DropDownComponent } from './components/drop-down/drop-down.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { InputComponent } from './components/input/input.component';
     LoadingComponent,
     FiltersComponent,
     InputComponent,
+    LanguageSelectorComponent,
+    DropDownComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

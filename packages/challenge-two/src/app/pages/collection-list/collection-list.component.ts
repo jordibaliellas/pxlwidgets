@@ -3,6 +3,7 @@ import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { InputForm } from 'src/app/inferfaces/filter.interface';
 import { Column } from 'src/app/inferfaces/table.interface';
+import { GeneralObject } from 'src/app/inferfaces/util.interface';
 import { CollectionService } from 'src/app/services/collection.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { nextTick } from 'src/app/utils/next-tick';
@@ -28,28 +29,24 @@ export class CollectionListComponent implements OnInit {
     },
   ];
 
-  filters: InputForm[] = [
+  filtersInfo: InputForm[] = [
     {
-      key: 'objectNumber',
-      label: 'Object number:',
-      placeholder: 'Object number...',
-    },
-    {
-      key: 'title',
+      key: 'q',
       label: 'Title:',
       placeholder: 'Title...',
     },
     {
-      key: 'principalOrFirstMaker',
+      key: 'involvedMaker',
       label: 'Principal or first maker:',
       placeholder: 'Principal or first maker...',
     },
   ];
 
   rows$: Observable<Record<string, any>[]>;
+  filters$: BehaviorSubject<GeneralObject> = new BehaviorSubject({});
+  page$ = new BehaviorSubject(1);
 
   limit = 10;
-  page$ = new BehaviorSubject(1);
   total = 0;
   isLoading = false;
 
@@ -92,6 +89,10 @@ export class CollectionListComponent implements OnInit {
   onClickRow(event: any) {
     console.log('EVEEENT: ', event);
     // TODO: GO TO DETAIL
+  }
+
+  onChangedFilter(event: GeneralObject) {
+    console.log('event: ', event);
   }
 
   onClickPage(page: number) {

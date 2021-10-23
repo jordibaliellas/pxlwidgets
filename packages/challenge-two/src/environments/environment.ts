@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   backendApi: 'http://localhost:8080/',
   rijksmuseumApi: 'http://localhost:8080/rijksmuseum',
-  defaultLanguage: 'en',
+  defaultLanguage: 'nl',
 };
 
 /*

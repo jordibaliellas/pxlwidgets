@@ -12,9 +12,21 @@ export class CollectionService {
 
   constructor(private http: HttpClient) {}
 
-  getCollection({ language, page }: CollectionQuery): Observable<Collection> {
+  getCollection({ language, query }: CollectionQuery): Observable<Collection> {
     const url = `${environment.rijksmuseumApi}/${language}/${this.collectionPath}`;
-    const params = new HttpParams().set('p', page);
+
+    let params = new HttpParams();
+
+    Object.entries(query).forEach(([key, value]) => {
+      params = params.set(key, value);
+    });
+
     return this.http.get<Collection>(url, { params });
+  }
+
+  getCollectionById(id: string, language: string) {
+    const url = `${environment.rijksmuseumApi}/${language}/${this.collectionPath}/${id}`;
+
+    return this.http.get<Collection>(url);
   }
 }

@@ -11,17 +11,13 @@ export class TableComponent implements OnInit {
   @Input() columns: Column[];
   @Input() rows: GeneralObject[];
 
-  @Output() clickedRow = new EventEmitter<{
-    column: Column;
-    row: GeneralObject;
-    rowIndex: number;
-  }>();
+  @Output() clickedRow = new EventEmitter<GeneralObject>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   clickRow(column: Column, row: GeneralObject, rowIndex: number) {
-    this.clickedRow.emit({ column, row, rowIndex });
+    this.clickedRow.emit(row);
   }
 }

@@ -1,3 +1,5 @@
+import { GeneralObject } from './util.interface';
+
 export interface Collection {
   artObjects: ArtObject[];
   count: number;
@@ -44,5 +46,5 @@ interface ArtObjectHeaderImage {
 
 export interface CollectionQuery {
   language: string;
-  page: number;
+  query: GeneralObject;
 }

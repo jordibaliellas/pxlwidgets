@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { InputForm } from 'src/app/inferfaces/filter.interface';
 import { Column } from 'src/app/inferfaces/table.interface';
 import { GeneralObject } from 'src/app/inferfaces/util.interface';
 import { CollectionService } from 'src/app/services/collection.service';
+import { FiltersService } from 'src/app/services/filters.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { nextTick } from 'src/app/utils/next-tick';
 
@@ -43,8 +45,7 @@ export class CollectionListComponent implements OnInit {
   ];
 
   rows$: Observable<Record<string, any>[]>;
-  filters$: BehaviorSubject<GeneralObject> = new BehaviorSubject({});
-  page$ = new BehaviorSubject(1);
+  page$: Observable<number>;
 
   limit = 10;
   total = 0;
@@ -52,19 +53,26 @@ export class CollectionListComponent implements OnInit {
 
   constructor(
     private collectionService: CollectionService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private filtersService: FiltersService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    const languageObservable = this.languageService.getLanguageObservable();
-    this.rows$ = combineLatest([languageObservable, this.page$]).pipe(
+    const languageObservable$ = this.languageService.getLanguageObservable();
+    const filtersObservable$ = this.filtersService.getFiltersObservable();
+    this.page$ = filtersObservable$.pipe(map((filters) => filters.p));
+    this.rows$ = combineLatest([languageObservable$, filtersObservable$]).pipe(
       tap(() => {
         nextTick(() => {
           this.isLoading = true;
         });
       }),
-      mergeMap(([language, page]) => {
-        return this.collectionService.getCollection({ language, page });
+      mergeMap(([language, query]) => {
+        return this.collectionService.getCollection({
+          language,
+          query,
+        });
       }),
       tap((res) => {
         this.total = res.count;
@@ -86,16 +94,14 @@ export class CollectionListComponent implements OnInit {
     );
   }
 
-  onClickRow(event: any) {
-    console.log('EVEEENT: ', event);
-    // TODO: GO TO DETAIL
-  }
-
-  onChangedFilter(event: GeneralObject) {
-    console.log('event: ', event);
+  onClickRow(row: GeneralObject) {
+    const objectNumber = row.objectNumber;
+    this.router.navigate([`/${objectNumber}`]);
   }
 
   onClickPage(page: number) {
-    this.page$.next(page);
+    const currentFilters = this.filtersService.getCurrentFilters();
+    currentFilters['p'] = page;
+    this.filtersService.setFilters(currentFilters);
   }
 }

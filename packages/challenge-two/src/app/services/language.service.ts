@@ -6,21 +6,21 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class LanguageService {
-  private language: BehaviorSubject<string> = new BehaviorSubject(
+  private language$: BehaviorSubject<string> = new BehaviorSubject(
     environment.defaultLanguage
   );
 
   constructor() {}
 
   getLanguageObservable() {
-    return this.language;
+    return this.language$.asObservable();
   }
 
   getCurrentLanguage() {
-    return this.language.value;
+    return this.language$.value;
   }
 
   setLanguage(language: string) {
-    this.language.next(language);
+    this.language$.next(language);
   }
 }

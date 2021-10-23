@@ -3,10 +3,7 @@
   class="p-4"
 >
   <div class="p-3 flex items-center justify-center">
-    <app-filters
-      [inputs]="filtersInfo"
-      (changeFilter)="onChangedFilter($event)"
-    ></app-filters>
+    <app-filters [inputs]="filtersInfo"></app-filters>
     <app-language-selector></app-language-selector>
   </div>
   <div class="p-3">

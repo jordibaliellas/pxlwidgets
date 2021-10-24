@@ -6,6 +6,11 @@ If you want to run the node server you need to have done `yarn` before or `npm i
 
 Remember to run this project you need to have running backend-api project
 
+## If I had more time
+
+- I would like to create a shared module for the common components created
+- I would like to add lazy loading in each module/page
+- I would like to have a better UI
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

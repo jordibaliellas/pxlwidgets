@@ -15,6 +15,7 @@ import { InputComponent } from './components/input/input.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
+import { InformationDetailComponent } from './components/information-detail/information-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BackButtonComponent } from './components/back-button/back-button.compon
     LanguageSelectorComponent,
     DropDownComponent,
     BackButtonComponent,
+    InformationDetailComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

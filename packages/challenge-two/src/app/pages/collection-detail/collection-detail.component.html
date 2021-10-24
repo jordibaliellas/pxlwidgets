@@ -34,10 +34,10 @@
         </h1>
       </div>
       <div>
-        <span class="underline">Description</span>
-        <div class="pl-2">
-          {{ collectionInfo?.artObject?.label?.description }}
-        </div>
+        <app-information-detail
+          title="Description"
+          [info]="collectionInfo?.artObject?.label?.description"
+        ></app-information-detail>
       </div>
       <div>
         <span class="underline">Dimensions</span>
@@ -54,32 +54,18 @@
         </div>
       </div>
       <div>
-        <span class="underline">Historical persons</span>
-        <div class="pl-2">
-          <span
-            *ngFor="
-              let historicalPerson of collectionInfo?.artObject
-                ?.historicalPersons;
-              let i = index
-            "
-          >
-            <span *ngIf="i !== 0">/</span>
-            {{ historicalPerson }}
-          </span>
-        </div>
+        <app-information-detail
+          title="Historical persons"
+          [info]="collectionInfo?.artObject?.historicalPersons"
+        ></app-information-detail>
       </div>
       <div>
-        <span class="underline">Marker liner</span>
-        <div class="pl-2">
-          {{ collectionInfo?.artObject?.label?.makerLine }}
-        </div>
+        <app-information-detail
+          title="Marker liner"
+          [info]="collectionInfo?.artObject?.label?.makerLine"
+        ></app-information-detail>
       </div>
-      <div>
-        <span class="underline">Notes</span>
-        <div class="pl-2">
-          {{ collectionInfo?.artObject?.label?.notes }}
-        </div>
-      </div>
+      <div></div>
     </div>
   </div>
 </div>

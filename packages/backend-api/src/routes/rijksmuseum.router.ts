@@ -16,7 +16,12 @@ rijksmuseumRouter.get("**", async (req, res) => {
 
   const pathAndQuery = `${currentPath}?${queryParams.toString()}`;
 
-  const result = await forwardRijksmuseumApi(pathAndQuery);
-  apiCache.set(originalPath, result);
-  return res.json(result).end();
+  try {
+    const result = await forwardRijksmuseumApi(pathAndQuery);
+    apiCache.set(originalPath, result);
+    return res.json(result).end();
+  } catch (err) {
+    console.log("Error getting data from rijksmuseum: ", err);
+    return res.status(500).send(err).end();
+  }
 });

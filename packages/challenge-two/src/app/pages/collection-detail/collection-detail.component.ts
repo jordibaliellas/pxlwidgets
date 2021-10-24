@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { GeneralObject } from 'src/app/inferfaces/util.interface';
@@ -16,6 +16,7 @@ export class CollectionDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private collectionService: CollectionService,
     private languageService: LanguageService
   ) {}
@@ -30,6 +31,7 @@ export class CollectionDetailComponent implements OnInit {
       catchError((err) => {
         console.error('We had some error getting collection');
         console.error(err);
+        this.router.navigate(['/']);
         return of({});
       })
     );

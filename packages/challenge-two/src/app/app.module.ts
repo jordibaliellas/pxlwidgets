@@ -14,6 +14,7 @@ import { FiltersComponent } from './components/filters/filters.component';
 import { InputComponent } from './components/input/input.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DropDownComponent } from './components/drop-down/drop-down.component';
     InputComponent,
     LanguageSelectorComponent,
     DropDownComponent,
+    BackButtonComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

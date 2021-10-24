@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
+If you want to run the node server you need to have done `yarn` before or `npm i` in this folder. After that just execute `npm start`. If you want to run angular built you will need http-server for example to run the html build.
+
+Remember to run this project you need to have running backend-api project
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
